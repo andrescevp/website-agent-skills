@@ -68,7 +68,7 @@ def check_geo_signals(html: str, robots_txt: str) -> dict:
 
 ### Sub-Task 1: Environment & Project Setup
 
-- **Status:** Pending
+- **Status:** Completed
 - **Objective:** Configure Python workspace with `uv`, `pyproject.toml`, and dependencies for crawling, HTML parsing, and testing.
 - **Related Requirements:** R1, R6
 - **Dependencies and Preconditions:** Empty workspace initialized.
