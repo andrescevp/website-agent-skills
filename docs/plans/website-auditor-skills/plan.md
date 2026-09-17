@@ -143,7 +143,7 @@ def check_geo_signals(html: str, robots_txt: str) -> dict:
 
 ### Sub-Task 6: Verification & End-to-End Audit on `mentoria24.com`
 
-- **Status:** Pending
+- **Status:** Completed
 - **Objective:** Execute the entire audit pipeline on `mentoria24.com` and produce `audits/mentoria24.com/audit.md`.
 - **Related Requirements:** R3, R4, R6, R7
 - **Dependencies and Preconditions:** Sub-Tasks 1 through 5 completed.
@@ -160,13 +160,13 @@ def check_geo_signals(html: str, robots_txt: str) -> dict:
 
 - **System-Wide Test:** Run `uv run pytest` across all test suites, verify `.agents/` skill discovery, and confirm `audits/mentoria24.com/audit.md` contains comprehensive analysis.
 - **Completion Checklist:**
-  - [ ] `pyproject.toml` and test suite configured with TDD.
-  - [ ] `crawler.py` discovers URLs, maps status codes, and checks basic SEO tags.
-  - [ ] `seo_geo_check.py` validates SEO and GEO standards.
-  - [ ] `.agents/skills/website-audit/` structured with `SKILL.md` and references.
-  - [ ] `AGENTS.md` documents specialist directives and MCP prerequisites.
-  - [ ] `audits/mentoria24.com/audit.md` generated with full report.
-  - [ ] All files strictly comply with the 300-line limit.
+  - [x] `pyproject.toml` and test suite configured with TDD.
+  - [x] `crawler.py` discovers URLs, maps status codes, and checks basic SEO tags.
+  - [x] `seo_geo_check.py` validates SEO and GEO standards.
+  - [x] `.agents/skills/website-audit/` structured with `SKILL.md` and references.
+  - [x] `AGENTS.md` documents specialist directives and MCP prerequisites.
+  - [x] `audits/mentoria24.com/audit.md` generated with full report.
+  - [x] All files strictly comply with the 300-line limit.
 
 ## Open Questions
 
