@@ -113,7 +113,7 @@ def check_geo_signals(html: str, robots_txt: str) -> dict:
 
 ### Sub-Task 4: Audit Skill & Knowledge References in `.agents/`
 
-- **Status:** Pending
+- **Status:** Completed
 - **Objective:** Create `.agents/skills/website-audit/SKILL.md` along with reference documentation on modern SEO and GEO standards.
 - **Related Requirements:** R2, R4, R5
 - **Dependencies and Preconditions:** Sub-Tasks 2 and 3 completed.

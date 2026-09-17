@@ -1,6 +1,6 @@
-# Sub-Task Review: Sub-Task 3 - Multi-Engine SEO & GEO Analyzer with TDD
+# Sub-Task Review: Sub-Task 4 - Audit Skill & Knowledge References in `.agents/`
 
-**Reviewed against:** Sub-Task 3 from plan.md  
+**Reviewed against:** Sub-Task 4 from plan.md  
 **Overall risk:** Low  
 **Verdict:** Approve  
 
@@ -8,12 +8,12 @@
 
 | Criteria | Status | Notes |
 |---|---|---|
-| Analyzer provides structured scores/findings across SEO and GEO categories | PASS | Generates `traditional_seo`, `geo_readiness`, and `ai_crawler_access` metrics |
-| Modern AI crawler detection in `robots.txt` (`GPTBot`, `ClaudeBot`, `PerplexityBot`, etc.) | PASS | Analyzed in `analyze_robots_txt` |
-| JSON-LD Schema.org detection & validation | PASS | Recursively extracts `@type` entities (FAQPage, Organization, Service) |
-| Detection of `llms.txt`, heading hierarchy, meta descriptions, and OG tags | PASS | Verified in `analyze_page_seo_geo` |
-| File size under 300 lines | PASS | `seo_geo_check.py` is 291 lines; `test_seo_geo_check.py` is 138 lines |
-| TDD followed (tests written and failing before implementation) | PASS | Verified red-to-green progression |
+| `SKILL.md` contains valid YAML frontmatter and step-by-step instructions | PASS | Created in `.agents/skills/website-audit/SKILL.md` (100 lines) |
+| Context intake defined with `context.md` check and prompt fallback | PASS | Clear instructions for `audits/<domain>/context.md` with interactive fallback |
+| Output template defines report structure for `audits/<domain>/audit.md` | PASS | Template covers executive summary, URL table, SEO, GEO, and action plan |
+| Comprehensive SEO reference guide covering Google, Bing, and Brave | PASS | Created in `references/seo_guidelines.md` (37 lines) |
+| Comprehensive GEO reference guide covering AI engines and grounding | PASS | Created in `references/geo_guidelines.md` (44 lines) |
+| All files strictly under 300 lines | PASS | Max file size is 100 lines |
 
 ## Findings
 
@@ -31,9 +31,9 @@ None.
 
 ## Validation Results
 
-- Tests present: Yes (`tests/test_seo_geo_check.py` with 4 test cases)
-- Validation commands: `uv run pytest tests/test_seo_geo_check.py` (Passed: 4 passed in 0.08s)
-- Live verification: Tested against `https://mentoria24.com` with successful detection of 100/100 readiness, Schema types, and robots permissions.
+- Tests present: N/A (Documentation / Skill specification)
+- Formatting: Verified valid YAML frontmatter and clean Markdown structure.
+- Line limits: All files under 100 lines.
 
 ## Regression Risk Assessment
 
@@ -42,9 +42,9 @@ None.
 
 ## Scope Compliance
 
-- In scope: `.agents/skills/website-audit/scripts/seo_geo_check.py` and `tests/test_seo_geo_check.py`
+- In scope: `.agents/skills/website-audit/SKILL.md` and reference guides
 - Out of scope detected: None
 
 ## Suggested Next Steps
 
-- [x] Proceed to Sub-Task 4: Audit Skill & Knowledge References in `.agents/`
+- [x] Proceed to Sub-Task 5: Master Directives (`AGENTS.md`)
