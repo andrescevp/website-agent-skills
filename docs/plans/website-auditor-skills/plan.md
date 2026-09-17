@@ -2,7 +2,7 @@
 title: "Plan: Website Auditor Agents, Skills, and SEO/GEO Engine"
 slug: "website-auditor-skills"
 description: "Specialized agent configurations, skills, and tooling to audit websites for SEO, GEO, and Lighthouse metrics"
-status: "Pending"
+status: "Completed"
 created: "2026-09-17"
 updated: "2026-09-17"
 tags:

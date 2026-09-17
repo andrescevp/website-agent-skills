@@ -12,4 +12,4 @@ tags:
 
 | Slug | Title | Description | Status | Created | Updated |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| [website-auditor-skills](file:///home/andres/workspace/website-auditor-skills/docs/plans/website-auditor-skills/plan.md) | Website Auditor Agents, Skills, and SEO/GEO Engine | Specialized agent configurations, skills, and tooling to audit websites for SEO, GEO, and Lighthouse metrics | Pending | 2026-09-17 | 2026-09-17 |
+| [website-auditor-skills](file:///home/andres/workspace/website-auditor-skills/docs/plans/website-auditor-skills/plan.md) | Website Auditor Agents, Skills, and SEO/GEO Engine | Specialized agent configurations, skills, and tooling to audit websites for SEO, GEO, and Lighthouse metrics | Completed | 2026-09-17 | 2026-09-17 |
