@@ -1,6 +1,6 @@
-# Sub-Task Review: Sub-Task 4 - Audit Skill & Knowledge References in `.agents/`
+# Sub-Task Review: Sub-Task 5 - Master Directives (`AGENTS.md`)
 
-**Reviewed against:** Sub-Task 4 from plan.md  
+**Reviewed against:** Sub-Task 5 from plan.md  
 **Overall risk:** Low  
 **Verdict:** Approve  
 
@@ -8,12 +8,12 @@
 
 | Criteria | Status | Notes |
 |---|---|---|
-| `SKILL.md` contains valid YAML frontmatter and step-by-step instructions | PASS | Created in `.agents/skills/website-audit/SKILL.md` (100 lines) |
-| Context intake defined with `context.md` check and prompt fallback | PASS | Clear instructions for `audits/<domain>/context.md` with interactive fallback |
-| Output template defines report structure for `audits/<domain>/audit.md` | PASS | Template covers executive summary, URL table, SEO, GEO, and action plan |
-| Comprehensive SEO reference guide covering Google, Bing, and Brave | PASS | Created in `references/seo_guidelines.md` (37 lines) |
-| Comprehensive GEO reference guide covering AI engines and grounding | PASS | Created in `references/geo_guidelines.md` (44 lines) |
-| All files strictly under 300 lines | PASS | Max file size is 100 lines |
+| `AGENTS.md` defines specialist personas (Technical SEO, GEO, Performance) | PASS | Dedicated directives for Google, Bing, Brave, ChatGPT Search, Perplexity, Claude |
+| Directory conventions defined (`audits/<domain>/context.md` and `audit.md`) | PASS | Standard paths clearly documented |
+| Interactive prompt fallback when `context.md` is missing | PASS | Explicit wording provided for asking website goals and audience |
+| MCP browser requirements specified (`chrome-devtools` / `playwright`) | PASS | Both supported tools documented with primary use cases |
+| Architecture diagram and quick commands included | PASS | Mermaid workflow and CLI commands documented |
+| File size strictly under 300 lines | PASS | `AGENTS.md` is 102 lines |
 
 ## Findings
 
@@ -31,9 +31,9 @@ None.
 
 ## Validation Results
 
-- Tests present: N/A (Documentation / Skill specification)
-- Formatting: Verified valid YAML frontmatter and clean Markdown structure.
-- Line limits: All files under 100 lines.
+- Tests present: N/A (Documentation specification)
+- Validation: Validated against plan acceptance criteria and project guidelines.
+- Formatting: Clean Markdown with valid Mermaid flowchart syntax.
 
 ## Regression Risk Assessment
 
@@ -42,9 +42,9 @@ None.
 
 ## Scope Compliance
 
-- In scope: `.agents/skills/website-audit/SKILL.md` and reference guides
+- In scope: Root `AGENTS.md`
 - Out of scope detected: None
 
 ## Suggested Next Steps
 
-- [x] Proceed to Sub-Task 5: Master Directives (`AGENTS.md`)
+- [x] Proceed to Sub-Task 6: Verification & End-to-End Audit on `mentoria24.com`

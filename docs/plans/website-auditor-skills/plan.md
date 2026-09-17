@@ -128,7 +128,7 @@ def check_geo_signals(html: str, robots_txt: str) -> dict:
 
 ### Sub-Task 5: Master Directives (`AGENTS.md`)
 
-- **Status:** Pending
+- **Status:** Completed
 - **Objective:** Create root `AGENTS.md` defining the SEO/GEO Specialist role, repository architecture, and execution contracts.
 - **Related Requirements:** R1, R3, R4
 - **Dependencies and Preconditions:** Sub-Task 4 completed.
