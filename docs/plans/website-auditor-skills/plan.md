@@ -83,7 +83,7 @@ def check_geo_signals(html: str, robots_txt: str) -> dict:
 
 ### Sub-Task 2: Subdomain Crawler Engine with TDD
 
-- **Status:** Pending
+- **Status:** Completed
 - **Objective:** Build an asynchronous subdomain crawler discovering internal URLs and recording status codes and basic tags.
 - **Related Requirements:** R6
 - **Dependencies and Preconditions:** Sub-Task 1 completed.

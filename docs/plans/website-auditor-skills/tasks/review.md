@@ -1,6 +1,6 @@
-# Sub-Task Review: Sub-Task 1 - Environment & Project Setup
+# Sub-Task Review: Sub-Task 2 - Subdomain Crawler Engine with TDD
 
-**Reviewed against:** Sub-Task 1 from plan.md  
+**Reviewed against:** Sub-Task 2 from plan.md  
 **Overall risk:** Low  
 **Verdict:** Approve  
 
@@ -8,9 +8,11 @@
 
 | Criteria | Status | Notes |
 |---|---|---|
-| `uv run pytest` runs cleanly with 0 failures | PASS | 2 tests collected and passed in 0.18s |
-| Dependencies installed cleanly (`httpx`, `beautifulsoup4`, `pytest`, `pytest-asyncio`) | PASS | Virtualenv initialized at `.venv` with requested dependencies |
-| `.gitignore` configured to ignore temporary and cache files | PASS | `.venv/`, `__pycache__/`, `.pytest_cache/` ignored |
+| Crawler outputs JSON/dict structure with `url`, `status_code`, `title`, `canonical`, and outgoing internal links | PASS | Implemented in `PageResult` and `CrawlReport` classes |
+| Subdomain scoping logic prevents external traversal | PASS | `is_in_scope` handles subdomains, root domain, and excludes third-party hosts |
+| Asynchronous crawling with concurrency control and loop protection | PASS | Bounded with `asyncio.Semaphore` and visited set |
+| File size under 300 lines | PASS | `crawler.py` is 239 lines; `test_crawler.py` is 126 lines |
+| TDD followed (tests written and failing before implementation) | PASS | Verified red-to-green progression |
 
 ## Findings
 
@@ -28,20 +30,20 @@ None.
 
 ## Validation Results
 
-- Tests present: Yes (`tests/test_env.py` testing imports and asyncio runner)
-- Validation commands: `~/.local/bin/uv run pytest` (Passed: 2 passed)
-- Edge cases from sub-task: Kept minimal without unnecessary packages; files well under 300 lines.
+- Tests present: Yes (`tests/test_crawler.py` with 4 comprehensive test cases)
+- Validation commands: `uv run pytest tests/test_crawler.py` (Passed: 4 passed in 0.15s)
+- Edge cases from sub-task: Handled relative URLs, URL fragments, invalid schemes, and 404 responses gracefully.
 
 ## Regression Risk Assessment
 
-- Breaking changes detected: None (initial setup)
+- Breaking changes detected: None
 - Interface/config changes affecting other components: None
 
 ## Scope Compliance
 
-- In scope: `pyproject.toml`, `.gitignore`, test directory structure, `README.md`
+- In scope: `.agents/skills/website-audit/scripts/crawler.py` and `tests/test_crawler.py`
 - Out of scope detected: None
 
 ## Suggested Next Steps
 
-- [x] Proceed to Sub-Task 2: Subdomain Crawler Engine with TDD
+- [x] Proceed to Sub-Task 3: Multi-Engine SEO & GEO Analyzer with TDD
