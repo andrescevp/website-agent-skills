@@ -48,13 +48,112 @@ Metrics are evidence for findings, never standalone findings; exact runs (URL, d
 
 ## Prerequisites
 
-- **Browser MCP** for Lighthouse and rendered inspection: `chrome-devtools` (recommended) or `playwright` (see `AGENTS.md`).
-- **`@google/design.md` CLI** for `audit-design-md` (used directly; never reimplemented):
+### System requirements
+
+- **Node.js 20+ (LTS recommended) + npm/npx** — required by both browser MCP servers (`chrome-devtools`, `playwright`).
+- **Google Chrome stable (or Chrome for Testing)** — required by `chrome-devtools` MCP. `playwright` manages its own browser binaries (installed on demand, see below).
+- **Python 3.11+ and `uv`** — required by the audit scripts (`crawler.py`, `seo_geo_check.py`) and tests.
+
+### Browser MCP servers (required for Lighthouse & rendered inspection)
+
+One of the two servers below must be registered in your agent's MCP configuration (`mcpServers` JSON — location depends on the client: Claude Code, Cursor, VS Code, Copilot, Antigravity, etc.). `chrome-devtools` is recommended for Lighthouse / Core Web Vitals; `playwright` is recommended for accessibility-tree interaction and cross-browser work.
+
+#### `chrome-devtools` (recommended) — https://github.com/ChromeDevTools/chrome-devtools-mcp
+
+Runs ad-hoc via `npx` (no global install). Provides `lighthouse_audit`, `navigate_page`, `performance_start_trace`, screenshots, and DOM evaluation.
+
+```json
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+Optional flags (append to `args`):
+- `"--headless"` — run without a visible browser window.
+- `"--slim"` — reduced tool surface (used with `--headless` for CI).
+- `"--no-usage-statistics"` — opt out of Google usage stats.
+
+Smoke test: *"Check the performance of https://developers.chrome.com"*.
+
+#### `playwright` — https://playwright.dev/docs/getting-started-mcp
+
+Runs ad-hoc via `npx` (no global install). Provides `browser_navigate`, `browser_snapshot` (accessibility tree), `browser_click`, `browser_type`, and client-side DOM evaluation.
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
+  }
+}
+```
+
+First run may require browser binaries:
+
+```bash
+npx playwright install chromium   # or firefox / webkit / msedge
+```
+
+Optional flags (append to `args`): `"--headless"`, `"--browser=firefox"`, `"--browser=webkit"`, `"--browser=msedge"`.
+
+Smoke test: *"Navigate to https://demo.playwright.dev/todomvc and add a few todo items."*
+
+### Python dependencies
+
+```bash
+uv sync   # installs httpx + beautifulsoup4 (runtime) and pytest + pytest-asyncio (dev)
+```
+
+### `@google/design.md` CLI (optional, for `audit-design-md`)
+
+Used directly; never reimplemented:
 
 ```bash
 npm install -g @google/design.md
 designmd lint DESIGN.md
 ```
+
+## One-shot setup prompt (copy & paste)
+
+Paste the block below into your AI agent (Claude Code, Cursor, VS Code Copilot, Antigravity, opencode, etc.) to install this harness — either into an existing project or from a clone of this repository. The prompt is self-contained: any agent that can read this `README.md` can execute it.
+
+````markdown
+Install/configure the **Website Auditor Skills** harness described in the repository README.md.
+
+MACHINE PREREQUISITES (verify/install if missing):
+- Node.js 20+ (LTS recommended) and npm/npx available (`node -v`, `npm -v`).
+- Google Chrome stable (or Chrome for Testing) for the chrome-devtools MCP.
+- Python 3.11+ and `uv` (https://docs.astral.sh/uv/) installed.
+
+CASE A — This directory is a clone of `website-auditor-skills` (repo root):
+1. Install Python dependencies: `uv sync`.
+2. Register the browser MCP servers in the agent/client MCP config (create the config if it does not exist):
+   - chrome-devtools (recommended): {"mcpServers": {"chrome-devtools": {"command": "npx", "args": ["-y", "chrome-devtools-mcp@latest"]}}}
+   - playwright (alternative): {"mcpServers": {"playwright": {"command": "npx", "args": ["@playwright/mcp@latest"]}}}
+3. If using playwright, ensure browser binaries: `npx playwright install chromium`.
+4. Optional (design.md skill): `npm install -g @google/design.md`.
+5. Verify: `uv run pytest` passes, and each configured MCP server passes its smoke test:
+   - chrome-devtools: "Check the performance of https://developers.chrome.com"
+   - playwright: "Navigate to https://demo.playwright.dev/todomvc and add a few todo items."
+6. Run a full audit following the "Quick commands" section of README.md.
+
+CASE B — Installing this harness into an EXISTING project (not a clone):
+1. Copy the `.agents/skills/` directory from this repository into the target project (keep the same relative path so the skills resolve).
+2. If the target project has no `.agents/skills`, create the path and copy all skill folders.
+3. Register the browser MCP servers listed in CASE A step 2 in the target project/client MCP config.
+4. Ensure the Python runtime deps are available in the target project: `httpx>=0.28.0`, `beautifulsoup4>=4.13.0` (dev: `pytest>=8.3.0`, `pytest-asyncio>=0.25.0`).
+5. Optional: `npm install -g @google/design.md`.
+6. Smoke-test the MCP servers and run the audit scripts from README.md "Quick commands" to confirm the harness works.
+
+Report: confirm each step, the MCP servers configured, and the smoke-test results.
+````
 
 ## Directory structure
 

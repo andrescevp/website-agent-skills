@@ -65,9 +65,69 @@ All audit reports must be saved directly to `audits/<sub.domain.me>/audit.md`.
 
 ## 3. Tooling & MCP Requirements
 
-This repository requires one of the following browser MCP servers:
-- **`chrome-devtools` (Recommended):** Provides `lighthouse_audit`, `navigate_page`, and performance tracing.
-- **`playwright`:** Provides `browser_navigate`, `browser_snapshot`, and client-side DOM evaluation.
+This repository requires **one of the following browser MCP servers** for Lighthouse and rendered inspection. Register the chosen server in the agent/client MCP configuration (`mcpServers` JSON — exact location depends on the client: Claude Code, Cursor, VS Code, Copilot, Antigravity, etc.).
+
+### 3.1 Prerequisites (install if missing)
+
+| Dependency | Required by | Minimum version |
+| --- | --- | --- |
+| **Node.js + npm/npx** | Both MCP servers | Node.js 20+ (LTS recommended for `chrome-devtools`) |
+| **Google Chrome stable (or Chrome for Testing)** | `chrome-devtools` | Current stable or newer |
+| **Python + `uv`** | Audit scripts (`crawler.py`, `seo_geo_check.py`) and tests | Python 3.11+ (deps via `uv sync`) |
+| **Playwright browser binaries** | `playwright` | Not installed by default — see below |
+
+### 3.2 `chrome-devtools` (Recommended) — <https://github.com/ChromeDevTools/chrome-devtools-mcp>
+
+Provides `lighthouse_audit`, `navigate_page`, `new_page`, `performance_start_trace`, screenshot/snapshot, and DOM evaluation. Runs ad-hoc via `npx`, no global install:
+
+```json
+{
+  "mcpServers": {
+    "chrome-devtools": {
+      "command": "npx",
+      "args": ["-y", "chrome-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+Optional flags (append to `args`):
+- `"--headless"` — run without a visible browser window.
+- `"--slim"` — reduced tool surface (used with `--headless` for CI).
+- `"--no-usage-statistics"` — opt out of Google usage stats (also auto-disabled when `CI` is set).
+
+Smoke test: *"Check the performance of https://developers.chrome.com"*.
+
+### 3.3 `playwright` — <https://playwright.dev/docs/getting-started-mcp>
+
+Provides `browser_navigate`, `browser_snapshot` (accessibility tree), `browser_click`, `browser_type`, `browser_evaluate`, and client-side DOM evaluation. Runs ad-hoc via `npx`, no global install:
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
+  }
+}
+```
+
+First run may require browser binaries:
+
+```bash
+npx playwright install chromium   # or firefox / webkit / msedge
+```
+
+Optional flags (append to `args`): `"--headless"`, `"--browser=firefox"`, `"--browser=webkit"`, `"--browser=msedge"`.
+
+Smoke test: *"Navigate to https://demo.playwright.dev/todomvc and add a few todo items."*
+
+### 3.4 Python dependencies
+
+```bash
+uv sync   # installs httpx + beautifulsoup4 (runtime) and pytest + pytest-asyncio (dev)
+```
 
 ---
 
