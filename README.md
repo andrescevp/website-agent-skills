@@ -125,7 +125,7 @@ designmd lint DESIGN.md
 Paste the block below into your AI agent (Claude Code, Cursor, VS Code Copilot, Antigravity, opencode, etc.) to install this harness — either into an existing project or from a clone of this repository. The prompt is self-contained: any agent that can read this `README.md` can execute it.
 
 ````markdown
-Install/configure the **Website Auditor Skills** harness described in the repository README.md.
+Install/configure the **Website Auditor Skills** harness described in the repository README.md: `https://github.com/andrescevp/website-agent-skills`
 
 MACHINE PREREQUISITES (verify/install if missing):
 - Node.js 20+ (LTS recommended) and npm/npx available (`node -v`, `npm -v`).
